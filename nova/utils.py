@@ -1239,6 +1239,12 @@ def convert_version_to_tuple(version_str):
 
 
 def is_neutron():
+    # TODO(IJW): This is actually used where the question is more typically
+    # 'are we running nova network?'  When using Gluon as plugin, then
+    # obviously this lumps Gluon in on the nova-network side of the fence.
+    # For now, we defeat the logic here to get the right behaviour.
+    return True
+
     global _IS_NEUTRON
 
     if _IS_NEUTRON is not None:
@@ -1257,7 +1263,6 @@ def is_neutron():
         _IS_NEUTRON = False
 
     return _IS_NEUTRON
-
 
 def is_auto_disk_config_disabled(auto_disk_config_raw):
     auto_disk_config_disabled = False
